@@ -32,6 +32,24 @@ void testApp::setup(){
 	// load geometry into mesh
 	
 	mMshBucky.load("bucky.ply");
+
+	vector<ofIndexType> tmpI = mMshBucky.getIndices();
+	
+	for (int i = 0; i < 12; i++){
+		Triangle t;
+		
+		t.C  = tmpI.back();
+		tmpI.pop_back();
+		
+		t.B  = tmpI.back();
+		tmpI.pop_back();
+		
+		t.A = tmpI.back();
+		tmpI.pop_back();
+		
+		spikeTriangles[t.C].push_back(t);
+	}
+	
 	
 //	ofFile is("bucky.tri", ofFile::ReadOnly);
 //	
